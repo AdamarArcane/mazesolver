@@ -6,8 +6,10 @@ class Window():
         self.width = width
         self.height = height
         self.__root = Tk()
-        self.__canvas = Canvas()
-        self.__canvas.pack()
+        self.__root.resizable(1,1)
+        self.__root.geometry(f"{width}x{height}")
+        self.canvas = Canvas(width=width, height=height)
+        self.canvas.pack()
         self.__running = False
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
 
