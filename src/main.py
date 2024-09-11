@@ -7,19 +7,16 @@ from maze import Maze
 def main():
     win = Window(800,600)
 
-    m1 = Maze(250, 50, 3, 3, 50, 50, win)
+    m1 = Maze(5, 5, 12, 10, 40, 40, win)
 
     m1._create_cells()
-    m1._draw_cell(0,1)
-    m1._draw_cell(0,2)
-    m1._draw_cell(1,1)
-    m1._draw_cell(2,1)
-    m1._draw_cell(2,2)
-    m1._draw_cell(1,0)
-    m1._draw_cell(2,0)
-    m1._draw_cell(1,2)
+    for i in range(m1.num_cols):
+        for j in range(m1.num_rows):
+            m1._draw_cell(i,j)
     m1._break_walls_r(0,0)
+    m1._reset_cells_visited()
     m1._break_entrance_and_exit()
+    m1.solve()
 
     win.wait_for_close()
 main()

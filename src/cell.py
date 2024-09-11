@@ -66,6 +66,6 @@ class Cell():
         point_2 = Point(middle_x_2, middle_y_2)
         line = Line(point_1, point_2)
         if undo:
-            line.draw(self._win.canvas, "yellow")
+            line.draw(self._win.canvas, "black")
         else:
-            line.draw(self._win.canvas, "red")
+            line.draw(self._win.canvas, "green2")
