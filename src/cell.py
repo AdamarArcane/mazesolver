@@ -3,7 +3,7 @@ from line import Line
 from window import Window
 
 class Cell():
-    def __init__(self, x1, y1, x2, y2, win, has_left_wall = True, has_right_wall = True, has_top_wall = True, has_bottom_wall = True):
+    def __init__(self, x1, y1, x2, y2, win, has_left_wall=True, has_right_wall=True, has_top_wall=True, has_bottom_wall=True):
         self.has_left_wall = has_left_wall
         self.has_right_wall = has_right_wall
         self.has_top_wall = has_top_wall
@@ -35,3 +35,16 @@ class Cell():
             point_2 = Point(self._x2, self._y2)
             line = Line(point_1, point_2)
             line.draw(self._win.canvas)
+    
+    def draw_move(self, to_cell, undo=False):
+        middle_x_1 = abs(self._x1 - self._x2) / 2 + min(self._x1, self._x2)
+        middle_y_1 = abs(self._y1 - self._y2) / 2 + min(self._y1, self._y2)
+        middle_x_2 = abs(to_cell._x1 - to_cell._x2) / 2 + min(to_cell._x1, to_cell._x2)
+        middle_y_2 = abs(to_cell._y1 - to_cell._y2) / 2 + min(to_cell._y1, to_cell._y2)
+        point_1 = Point(middle_x_1, middle_y_1)
+        point_2 = Point(middle_x_2, middle_y_2)
+        line = Line(point_1, point_2)
+        if undo:
+            line.draw(self._win.canvas, "gray")
+        else:
+            line.draw(self._win.canvas, "red")
